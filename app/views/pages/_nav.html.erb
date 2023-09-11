@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="<%= root_path %>"><span class="navbar-brand mb-0 h1 text-white">Rails Pets Show</span></a>
+    </div>        
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, :class=>"nav-link active text-white", "aria-current"=>"page" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Pets", "#", :class=>"nav-link text-white" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_pets_user %>
+              <%= current_pets_user&.email %> (<%= current_pets_user&.role %>)
+            <% else %>  
+              Join us
+            <% end %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% if current_pets_user %>
+              <li><%= button_to("Log Out", destroy_pets_user_session_path, method: :delete, class: 'btn') %></li>
+            <% else %>  
+              <li><%= link_to "Sign up", new_pets_user_registration_path, class: 'btn' %></li>
+              <li><%= link_to "Login", new_pets_user_session_path, class: 'btn' %></li>
+            <% end %>            
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

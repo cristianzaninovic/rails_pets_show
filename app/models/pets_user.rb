@@ -5,6 +5,7 @@ class PetsUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum role: [:user, :admin]
   has_many :pet_posts
+  has_many :pet_comments
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role

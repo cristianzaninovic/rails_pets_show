@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pet comments</h1>
+
+<div id="pet_comments">
+  <% @pet_comments.each do |pet_comment| %>
+    <%= render pet_comment %>
+    <p>
+      <%= link_to "Show this pet comment", pet_comment %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pet comment", new_pet_comment_path %>

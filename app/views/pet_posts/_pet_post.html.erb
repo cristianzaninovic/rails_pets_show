@@ -14,4 +14,8 @@
     <%= pet_post.pets_user_id %>
   </p>
 
+  <% pet_post.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
+
 </div>

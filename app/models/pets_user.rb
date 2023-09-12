@@ -4,7 +4,7 @@ class PetsUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum role: [:user, :admin]
-
+  has_many :pet_posts
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role

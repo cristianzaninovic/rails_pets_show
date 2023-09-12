@@ -21,11 +21,11 @@ class PetCommentsController < ApplicationController
 
   # POST /pet_comments or /pet_comments.json
   def create
-    @pet_comment = PetComment.new(pet_comment_params)
-
+    @pet_post = PetPost.find(params[:post_id])
+    @pet_comment = @pet_post.comments.new(pet_comment_params)
     respond_to do |format|
       if @pet_comment.save
-        format.html { redirect_to pet_comment_url(@pet_comment), notice: "Pet comment was successfully created." }
+        format.html { redirect_to @pet_post, notice: "Pet comment was successfully created." }
         format.json { render :show, status: :created, location: @pet_comment }
       else
         format.html { render :new, status: :unprocessable_entity }

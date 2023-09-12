@@ -3,19 +3,28 @@
     <strong>Title:</strong>
     <%= pet_post.title %>
   </p>
-
   <p>
     <strong>Body:</strong>
     <%= simple_format(pet_post.body) %>
   </p>
-
   <p>
     <strong>Pets user:</strong>
-    <%= pet_post.pets_user_id %>
+    <%= pet_post.pets_user.email.downcase %>
   </p>
-
   <% pet_post.images.each do |image| %>
     <%= image_tag image %>
   <% end %>
-
+  <%= render pet_post.pet_comments %>
+  <div class="card my-1">
+    <div class="card-body">
+      <p class="font-weight-bold">Comments</p>
+      <%= form_with(model: [pet_post, pet_post.pet_comments.build]) do |f| %>
+        <div class="form-group">
+          <%= f.label 'New comment' %>
+          <%= f.text_area :body, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
 </div>

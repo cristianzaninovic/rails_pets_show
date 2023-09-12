@@ -1,17 +1,7 @@
-<div id="<%= dom_id pet_comment %>">
-  <p>
-    <strong>Body:</strong>
+<% unless !pet_comment.persisted? %>
+<div class="card">
+  <div class="card-body">
     <%= pet_comment.body %>
-  </p>
-
-  <p>
-    <strong>Pets user:</strong>
-    <%= pet_comment.pets_user_id %>
-  </p>
-
-  <p>
-    <strong>Pet post:</strong>
-    <%= pet_comment.pet_post_id %>
-  </p>
-
+  </div>
 </div>
+<% end %>

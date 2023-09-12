@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_002723) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_174347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_002723) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "pet_comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "pets_user_id", null: false
+    t.bigint "pet_post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_post_id"], name: "index_pet_comments_on_pet_post_id"
+    t.index ["pets_user_id"], name: "index_pet_comments_on_pets_user_id"
+  end
+
   create_table "pet_posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -66,5 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_002723) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pet_comments", "pet_posts"
+  add_foreign_key "pet_comments", "pets_users"
   add_foreign_key "pet_posts", "pets_users"
 end

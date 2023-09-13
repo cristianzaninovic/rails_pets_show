@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <%= pet_comment.body %>
-      <%= link_to 'reply', new_pet_post_pet_comment_path(@pet_post, parent_id: pet_comment.id), remote: true, class: 'd-block' %>
+      <%= link_to 'reply', new_pet_post_pet_comment_path(@pet_post, parent_id: pet_comment.id), remote: true, format: "js", class: 'd-block' %>
     </div>
   </div>
   <div id="reply-form-<%= pet_comment.id %>">

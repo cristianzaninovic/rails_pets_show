@@ -1,6 +1,6 @@
 class PetCommentsController < ApplicationController
   before_action :set_pet_comment, only: %i[ show edit update destroy ]
-
+  # before_action :authenticate_pets_user!, except: [:index, :show]
   # GET /pet_comments or /pet_comments.json
   def index
     @pet_comments = PetComment.all
@@ -14,6 +14,10 @@ class PetCommentsController < ApplicationController
   def new
     @pet_post = PetPost.find(params[:pet_post_id])
     @pet_comment = @pet_post.pet_comments.new(parent_id: params[:parent_id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /pet_comments/1/edit
@@ -70,6 +74,6 @@ class PetCommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_comment_params
-      params.require(:pet_comment).permit(:body, :pets_user_id, :pet_post_id)
+      params.require(:pet_comment).permit(:body, :pets_user_id, :pet_post_id, :parent_id)
     end
 end

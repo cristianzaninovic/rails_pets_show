@@ -21,8 +21,8 @@ class PetPostsController < ApplicationController
 
   # POST /pet_posts or /pet_posts.json
   def create
-    @pet_post = PetPost.new(pet_post_params)
-
+    # @pet_post = PetPost.new(pet_post_params.merge(pets_user_id: current_pets_user.id))
+    @pet_post = current_pets_user.pet_posts.new(pet_post_params)
     respond_to do |format|
       if @pet_post.save
         format.html { redirect_to pet_post_url(@pet_post), notice: "Pet post was successfully created." }
@@ -65,6 +65,6 @@ class PetPostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_post_params
-      params.require(:pet_post).permit(:title, :body, :pets_user_id, images: [])
+      params.require(:pet_post).permit(:title, :body, images: [])
     end
 end

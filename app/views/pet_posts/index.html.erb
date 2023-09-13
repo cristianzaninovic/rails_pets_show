@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Pet posts</h1>
+<h1 class="text-primary">Pet posts</h1>
 
-<div id="pet_posts">
-  <% @pet_posts.each do |pet_post| %>
-    <%= render pet_post %>
-    <p>
-      <%= link_to "Show this pet post", pet_post %>
-    </p>
-  <% end %>
+<div id="pet_posts" class="card-deck">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @pet_posts.each do |pet_post| %>
+      <%= render partial: 'pet_post_index', locals: {pet_post: pet_post } %>      
+    <% end %>
+  </div>
 </div>
 
 <%= link_to "New pet post", new_pet_post_path %>

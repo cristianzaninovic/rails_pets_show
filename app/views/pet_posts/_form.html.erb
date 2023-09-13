@@ -5,12 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :body %>
-    <% if current_pets_user.nil? %>    
-      <%= f.association :pets_user %>
-    <% else %>  
-      <%= f.hidden_field :pets_user, value: current_pets_user %>
-    <% end %>  
+    <%= f.input :body %> 
   </div>
   <% @pet_post.images.each do |image| %>
     <%= f.hidden_field :images, multiple: true, value: image.signed_id %>

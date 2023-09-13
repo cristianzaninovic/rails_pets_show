@@ -1,0 +1,12 @@
+<div id="<%= dom_id pet_post %>" class="col">
+  <div id="<%= dom_id pet_post %>" class='card' style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= pet_post.title %></h5>
+      <p class="card-text"><%= pet_post.body %></p>
+      <small class="fw-lighter">By <%= pet_post.pets_user.email.downcase %> on <%= pet_post.created_at %>.</small>
+      <p class="fw-lighter"><small><%= pet_post.pet_comments.nil? ? 0 : pet_post.pet_comments.count %> comments</small></p>
+      <p class="fw-lighter"><small><%= pet_post.images.nil? ? 0 : pet_post.images.count %> images</small></p>
+      <%= link_to "Show", pet_post, class: 'btn btn-outline-primary' %>  
+    </div>
+  </div>
+</div>

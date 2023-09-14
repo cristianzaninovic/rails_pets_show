@@ -8,6 +8,16 @@
   <% pet_post.images.each do |image| %>
     <%= image_tag image, class: "img-thumbnail" %>
   <% end %>
+  
+  <p class="fw-lighter"><small><%= pet_post.pet_user_likes.count %> <%= (pet_post.pet_user_likes.count) == 1 ? 'Like' : 'Likes'%></small></p>
+  <% if current_pets_user %>
+    <% pre_like = pet_post.pet_user_likes.find { |like| like.pets_user_id == current_pets_user.id} %>
+    <% if pre_like %>
+      <%= button_to 'Unlike', pet_post_pet_user_like_path(pet_post, pre_like), method: :delete %>
+    <% else %>      
+      <%= button_to 'Like', pet_post_pet_user_likes_path(pet_post), method: :post %>
+    <% end %>    
+  <% end %>
   <%= render pet_post.pet_comments %>
   <div class="card my-1">
     <div class="card-body">

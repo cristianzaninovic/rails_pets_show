@@ -1,7 +1,11 @@
 PetUserLike.delete_all
+ActiveRecord::Base.connection.execute('ALTER SEQUENCE pet_user_likes_id_seq RESTART 1;')
 PetComment.delete_all
+ActiveRecord::Base.connection.execute('ALTER SEQUENCE pet_comments_id_seq RESTART 1;')
 PetPost.delete_all
+ActiveRecord::Base.connection.execute('ALTER SEQUENCE pet_posts_id_seq RESTART 1;')
 PetsUser.delete_all
+ActiveRecord::Base.connection.execute('ALTER SEQUENCE pets_users_id_seq RESTART 1;')
 # Users load
 10.times do 
   user = PetsUser.new(

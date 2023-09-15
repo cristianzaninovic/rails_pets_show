@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_13_225440) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_232135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_13_225440) do
 
   create_table "pet_comments", force: :cascade do |t|
     t.text "body"
-    t.bigint "pets_user_id", null: false
+    t.bigint "pets_user_id"
     t.bigint "pet_post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

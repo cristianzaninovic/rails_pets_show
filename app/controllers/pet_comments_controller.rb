@@ -29,7 +29,7 @@ class PetCommentsController < ApplicationController
     @pet_post = PetPost.find(params[:pet_post_id])    
     @pet_comment = PetComment.new(pet_comment_params)
     @pet_comment.pet_post = @pet_post
-    @pet_comment.pets_user = current_pets_user
+    @pet_comment.pets_user = current_pets_user if current_pets_user
     # new_pet_comment_params = pet_comment_params.merge(pet_post_id: params[:pet_post_id])
     # @pet_comment = PetComment.new(new_pet_comment_params)
     respond_to do |format|
